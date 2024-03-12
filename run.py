@@ -38,7 +38,7 @@ def get_sales_data():
 
     sales_data = data_str.split(',') # break up at commas and remove commas
     # print(sales_data)
-
+   
     # CHECKING DATA IS VALID
     validate_data(sales_data)
 
@@ -52,6 +52,7 @@ def validate_data(values):
     # print(values)
 
     try: 
+        [int(value) for value in values] #convert strings into integers (checks if a number has been entered.) instead of a for loop have used list comprehension
         if len(values) != 6:
             raise ValueError(
                 f'Exactly 6 values required, you provided {len(values)}'

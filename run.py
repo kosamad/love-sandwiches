@@ -171,5 +171,21 @@ def main():
     update_worksheet(stock_data, 'stock')
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+
+stock_data = main()
+
+def get_stock_values(data):
+    """
+    Get stock values and notify user of what needs to be made the next day
+    """
+    headings = SHEET.worksheet('stock').row_values(1)
+    my_dic = {}
+    for heading, value in zip(headings, data):
+        my_dic[heading] = value
+    
+    print("Make the following numbers of sandwiches for the next market:\n")
+    return my_dic
+    
+stock_values = get_stock_values(stock_data)
+print(stock_values)
 

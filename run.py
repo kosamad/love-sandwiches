@@ -27,20 +27,25 @@ def get_sales_data():
     """
     Get sales figures input from the user
     """
-    print('Please enter sales data from the last market.') # instructions for user
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10,20,30,40,50,60\n") #\n puts a space between lines
+    while True:
+        print('Please enter sales data from the last market.') # instructions for user
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 10,20,30,40,50,60\n") #\n puts a space between lines
 
-    data_str = input('Enter your data here:') # where user inputs data ( output a string)
-    # print(f"The data provided is {data_str}") # checks values are assinged. this is removed once we know the code is valid
- 
-    # convert string value into a list, (req to insert values into spreadsheet)
+        data_str = input('Enter your data here:') # where user inputs data ( output a string)
+        # print(f"The data provided is {data_str}") # checks values are assinged. this is removed once we know the code is valid
+    
+        # convert string value into a list, (req to insert values into spreadsheet)
+        sales_data = data_str.split(',') # break up at commas and remove commas
+        # print(sales_data)
+        
+        # CHECKING DATA IS VALID
+        if validate_data(sales_data):
+            print("Data is valid!")
+            break
+    return sales_data
 
-    sales_data = data_str.split(',') # break up at commas and remove commas
-    # print(sales_data)
-   
-    # CHECKING DATA IS VALID
-    validate_data(sales_data)
+    # while loop to repeat request for data until valid data is inputed (prevent a user having to go back to the start)
 
  
 def validate_data(values):
@@ -59,9 +64,12 @@ def validate_data(values):
             )
     except ValueError as e: #python shorthand for error (e)
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+    
+    return True # this helps us determine if the data was valid and links to while loop in get_data function
 
 
-get_sales_data() # call function
+data = get_sales_data() # call function
 
 
 

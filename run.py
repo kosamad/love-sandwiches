@@ -49,7 +49,7 @@ def get_sales_data():
         if validate_data(sales_data):
             print("Data is valid!")
             break
-    return sales_data
+    return sales_data # (make sure there is somnewhere for these return values to go (at bottom where function was called))
 
     # while loop to repeat request for data until valid data is inputed (prevent a user having to go back to the start)
 
@@ -98,8 +98,15 @@ def calculate_surplus_data(sales_row):
     stock = SHEET.worksheet('stock').get_all_values()
     # pprint(stock)
     stock_row = stock[-1] # this slice method will get the final item from a list and return the variable
-    print(stock_row)
 
+
+    surplus_data = [] #empty list for data below
+
+    for stock, sales in zip(stock_row, sales_row): #see notes on zip method, allows you to move through two lists at once.
+        surplus = int(stock) - sales # int method here converts straight away. Saves a line of code doing separatly.
+        surplus_data.append(surplus)
+    
+    return surplus_data
 
 # common practise to wrap all main function calls in a function called main (before this they were just at the bottom of the page)
 def main():
@@ -109,7 +116,8 @@ def main():
     data = get_sales_data() # call function
     sales_data = [int(num) for num in data] #convert strings into integers 
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()

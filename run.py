@@ -25,8 +25,12 @@ sales = SHEET.worksheet('sales') # corresponds to name ('sales' of the worksheet
 
 def get_sales_data():
     """
-    Get sales figures input from the user
+    Get sales figures input from the user.
+    Run a while loop to collect a valid string of data from the user
+    via the terminal, which must be a string of 6 numbers separated
+    by commas. The loop will repeatedly request data, until it is valid.
     """
+
     while True:
         print('Please enter sales data from the last market.') # instructions for user
         print("Data should be six numbers, separated by commas.")
@@ -69,7 +73,19 @@ def validate_data(values):
     return True # this helps us determine if the data was valid and links to while loop in get_data function
 
 
+
+def update_sales_worksheet(data):
+    """
+    Update sales worksheet, add new row with the list data provided
+    """
+    print('updating sales worksheet...\n') # gives user feedback and helps narrow down bugs.
+    sales_worksheet = SHEET.worksheet('sales') #accessing sales worksheet
+    sales_worksheet.append_row(data) # using a append_row method to insert our data into the sheet.
+    print("Sales worksheet updated successfully.\n")
+
+
+
 data = get_sales_data() # call function
-
-
+sales_data = [int(num) for num in data] #convert strings into integers 
+update_sales_worksheet(sales_data)
 

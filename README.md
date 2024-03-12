@@ -1,3 +1,9 @@
+flow chart to help document logic see lucid chart ![here](images/love_sandwiches_flowcharts.png)
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome,
@@ -29,4 +35,4 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 
 ---
 
-Happy coding!
+
